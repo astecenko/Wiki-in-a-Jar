@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="/public/skins/default/master.xsl"?>
+
+<page>
+
+	<main-menu>
+		<main-menu-entry selected="no" value="home" link="/wiki"/>
+		<main-menu-entry selected="yes" value="index"/>
+	</main-menu>
+
+	<sub-menu>
+		<sub-menu-entry selected="yes" value="wiki"/>
+		<sub-menu-entry selected="no" value="vcard" link="/index/vcard"/>
+		<sub-menu-entry selected="no" value="all" link="/index/all"/>
+	</sub-menu>
+
+	@content@
+
+	<footer />
+
+</page>

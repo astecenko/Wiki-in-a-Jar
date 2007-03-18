@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="/public/skins/default/master.xsl"?>
+
+<page>
+
+	<main-menu>
+		<main-menu-entry selected="yes" value="home"/>
+		<main-menu-entry selected="no" value="index" link="/index/wiki"/>
+	</main-menu>
+
+	<sub-menu>
+		<edit-menu>edit</edit-menu>
+		<sub-menu-entry selected="no" value="admin" link="/admin/"/>
+	</sub-menu>
+
+	@content@
+
+	<footer />
+
+</page>

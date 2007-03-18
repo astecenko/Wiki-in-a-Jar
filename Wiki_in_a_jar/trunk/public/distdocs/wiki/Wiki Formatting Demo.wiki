@@ -1,0 +1,16 @@
+== Heading 2 ==
+=== Heading 3 ===
+==== Heading 4 ====
+Some text.
+* List item
+** Another one
+# Ordered list item
+## More...
+
+Simple, isn't it?
+ Always remember you're unique, just like everyone else.
+----
+* URL: http://wiki-in-a-jar.sourceforge.net/
+* Wiki link: [[Main Page]]
+* vCard link: [[vcard:Firstname Lastname]]
+* Tags: [[tags: metawiki help]] (you can't see them here, but below)
