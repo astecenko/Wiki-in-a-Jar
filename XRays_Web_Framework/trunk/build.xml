@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!-- ====================================================================== 
+     Mar 8, 2007 8:37:52 AM                                                        
+
+     XRays Web Application Framework    
+     Build XML/XSL/CSS based web application.
+                   
+     rico_g AT users DOT sourceforge DOT net
+     ====================================================================== -->
+<project name="XRays Framework" default="main">
+	<description>
+     XRays Web Application Framework    
+     Build XML/XSL/CSS based web application.
+                   
+		rico_g AT users DOT sourceforge DOT net
+    </description>
+
+	<property name="build" value="build" />
+	<property name="dist" value="dist" />
+
+	<!-- ================================= 
+          target: main              
+         ================================= -->
+	<target name="main" depends="build, publish" description="Builds the project jar and copies it to referencing project">
+	</target>
+
+	<!-- ================================= 
+          target: clean              
+         ================================= -->
+	<target name="clean" description="Cleans output directories">
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+	</target>
+
+	<!-- ================================= 
+          target: build              
+         ================================= -->
+	<target name="build" depends="init, compile, jar" description="Build the project jar file">
+
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: init                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="init">
+		<mkdir dir="${build}" />
+		<mkdir dir="${build}/classes" />
+		<mkdir dir="${dist}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: compile                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="compile">
+		<javac srcdir="src" destdir="${build}/classes" debug="on" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: jar                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="jar">
+		<jar basedir="${build}/classes" destfile="${dist}/xrays.jar" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: publish                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="publish">
+		<copy file="${dist}/xrays.jar" todir="../Wiki in a jar BNW/lib/" />
+	</target>
+
+</project>
