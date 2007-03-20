@@ -23,8 +23,8 @@ The markup is kept simple (based on Wikipedia syntax) and content is stored in p
 Why? To reveal the power of plain text. Plain text files can be opened with almost any editor and by keeping the markup simple it is very easy to transform the content to any other desired format even after years, when the original editor is not available anymore (it's hard to imagine that there could be a world without text editors).
 <p>&#160;</p>
 <ul>
-	<li>Wiki pages can be edited, linked, tagged, and searched. The same is true for vCard contact files, except being able to directly edit them. <a href="/wiki/show/Here is why.xml">Here is why</a>.</li>
-	<li>Probably the best new feature is the addition of <b>Tag Trees</b>. They allow to group and organize tagged pages in a hierarchy, bringing structure into the otherwise flat tag cloud.</li>
+	<li>Wiki pages can be edited, linked, tagged, and searched. The same is true for vCard contact files, except being able to directly edit them.</li>
+	<li>Probably the best new feature is the addition of <b>Tag Trees</b> (see below for demo). They allow to group and organize tagged pages in a hierarchy, bringing structure into the otherwise flat tag cloud.</li>
 </ul>
 <p>&#160;</p>
 Wiki in a Jar is an Open Source Project released under the GNU General Public License.
@@ -35,14 +35,18 @@ Wiki in a Jar is an Open Source Project released under the GNU General Public Li
 <p>&#160;</p>
 <ul>
 	<li>You will need a Java Runtime Environment of version <b>1.5</b> or later (these days it is already installed on most systems)</li>
-	<li>The wiki serves XML and XSL pages instead of HTML. Most modern browsers support that, so you do not have to worry about this.</li>
+	<li>The wiki serves XML and XSL pages instead of HTML. Most modern browsers support that, so you do not have to worry about this.
+	In fact, this page is XML. If this you can read this page and you don't see just a bunch of XML tags, you can be sure your browser supports XML and XSL (view the source of this page).</li>
 <ul>
 	<li>Firefox supports XML/XSLT/CSS as of version 1.0.2</li>
 	<li>Internet Explorer as of version 6</li>
-	<li>More details here: <a href='http://www.w3schools.com/xsl/xsl_browsers.asp'>http://www.w3schools.com/xsl/xsl_browsers.asp</a></li>
 </ul>
 </ul>
 <p>&#160;</p>
+<h2> Tag Trees in Action! </h2>
+<ul>
+	<li><a href="/tagtrees.htm">Watch the Tag Trees screen capture!</a></li>
+</ul>
 <h2> Under the Hood </h2>
 <h3> Web Server </h3>
 <ul>
