@@ -6,18 +6,18 @@
 	<xsl:template match="admin-page">
 		<ul>
 			<li>
-				<a href="/admin/shutdown">shutdown this wiki server</a>
+				<a href="/admin/shutdown" accesskey="s" title="Shutdown [Alt-s]">shutdown this wiki server</a>
 			</li>
 			<li>
 				<xsl:choose>
 					<xsl:when
 						test="only-local-connections/@value = 'yes'">
-						<a href="/admin/toggleconnections">
+						<a href="/admin/toggleconnections" accesskey="a" title="Allow [Alt-a]">
 							allow remote connections to this wiki server
 						</a>
 					</xsl:when>
 					<xsl:otherwise>
-						<a href="/admin/toggleconnections">
+						<a href="/admin/toggleconnections" accesskey="b" title="Block [Alt-b]">
 							block remote connections to this wiki server
 						</a>
 					</xsl:otherwise>
