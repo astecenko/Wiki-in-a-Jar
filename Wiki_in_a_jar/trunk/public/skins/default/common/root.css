@@ -165,6 +165,10 @@ ol, ul, li {
 	color: #000;
 }
 
+#editlink {
+	color: #EF8F00;
+}
+
 a {
     color: #5F76BC;
 	text-decoration: none;
