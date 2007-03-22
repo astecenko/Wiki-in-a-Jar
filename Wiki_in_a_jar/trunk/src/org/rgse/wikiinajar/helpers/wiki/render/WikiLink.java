@@ -88,7 +88,7 @@ public class WikiLink {
 				result = "<a href=\"" + ShowWikiArticleView.getLink(link)
 						+ "\">" + encLink + "</a>";
 			} else {
-				result = "<a href=\"" + EditWikiArticleView.getLink(link)
+				result = "<a id=\"editlink\" href=\"" + EditWikiArticleView.getLink(link)
 						+ "\">" + encLink + "</a>";
 			}
 		} else if (VCARD_NAMESPACE.equalsIgnoreCase(namespace)) {
