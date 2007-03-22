@@ -80,6 +80,10 @@ public class ShowVcardView implements View {
 		for (Iterator iter = properties.iterator(); iter.hasNext();) {
 			VCardProperty property = (VCardProperty) iter.next();
 			Xml prop = null;
+			if (property.getValue().trim().length() == 0) {
+				// skip empty properties
+				continue;
+			}
 			if (property.getName().equals("NOTE")) {
 				prop = xml.tag("formatted-property").attr("name",
 						getNiceName(property.getName())).tag("value",
