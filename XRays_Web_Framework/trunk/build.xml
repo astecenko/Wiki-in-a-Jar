@@ -21,7 +21,7 @@
 	<!-- ================================= 
           target: main              
          ================================= -->
-	<target name="main" depends="build, publish" description="Builds the project jar and copies it to referencing project">
+	<target name="main" depends="build" description="Builds the project jar">
 	</target>
 
 	<!-- ================================= 
@@ -66,7 +66,7 @@
           target: publish                      
          - - - - - - - - - - - - - - - - - -->
 	<target name="publish">
-		<copy file="${dist}/xrays.jar" todir="../Wiki in a jar BNW/lib/" />
+		<copy file="${dist}/xrays.jar" todir="../Wiki_in_a_jar/lib/" />
 	</target>
 
 </project>
