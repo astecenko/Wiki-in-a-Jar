@@ -12,7 +12,7 @@
 
 	<xsl:template match="edit-menu">
 		<span>
-			<a>
+			<a accesskey="e" title="Edit [Alt-e]">
 				<xsl:attribute name="href">
 					/wiki/edit/
 					<xsl:value-of select="/page/article/id" />
@@ -34,6 +34,12 @@
 					<a>
 						<xsl:attribute name="href">
 							<xsl:value-of select="@link" />
+						</xsl:attribute>
+						<xsl:attribute name="accesskey">
+							<xsl:value-of select="@accesskey" />
+						</xsl:attribute>
+						<xsl:attribute name="title">
+							<xsl:value-of select="@title" />
 						</xsl:attribute>
 						<xsl:value-of select="@value" />
 					</a>
