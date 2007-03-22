@@ -17,14 +17,20 @@
 				<xsl:apply-templates select="article-menu" />
 				<td width="100%"></td>
 				<td>
-					<form method="GET" action="/find/pages/">
+					<form method="GET" action="/find/pages/"
+						name="findform">
 						<div id="search-bar">
 							<input id="search-txt" type="text"
-								name="query" accesskey="f" title="Find [Alt-f]" />
+								tabindex="0" name="query" accesskey="f" title="Find [Alt-f]" />
 							<input id="search-btn" type="submit"
 								value="" title="Find [Alt-f]" />
 						</div>
 					</form>
+					<script language="javascript">
+						<!-- 
+							document.findform.query.focus();
+							// -->
+					</script>
 				</td>
 				<td style="padding: 0; text-align: right">
 					<img src="/public/skins/default/common/ctr.png"

@@ -22,7 +22,9 @@
 
 			<body>
 				<div id="header-content">
-					<div id="header-logo"><br/></div>
+					<div id="header-logo">
+						<br />
+					</div>
 					<div id="header-menu">
 						<xsl:apply-templates select="/page/main-menu" />
 					</div>
@@ -59,10 +61,25 @@
 										src="/public/skins/default/common/cbl.png" height="45" />
 								</td>
 								<td style="padding-left: 10px"></td>
-								<td><a style="color: #FFF;font-weight:bold;" href="http://wiki-in-a-jar.sourceforge.net/">sourceforge.net</a></td>
-								<td width="100%" style="color: #FFF;font-size: xx-small;">do good!</td>								
+								<td>
+									<a
+										style="color: #FFF;font-weight:bold;"
+										href="http://wiki-in-a-jar.sourceforge.net/">
+										sourceforge.net
+									</a>
+								</td>
+								<td width="100%"
+									style="color: #FFF;font-size: xx-small;">
+									do good!
+								</td>
 								<!-- I know, the style stuff shouldn't be here, but this is to keep my sanity! -->
-								<td><a style="color: #FFF;font-weight:bold;" href="/wiki/show/About Wiki in a Jar">about</a></td>
+								<td>
+									<a
+										style="color: #FFF;font-weight:bold;"
+										href="/wiki/show/About Wiki in a Jar">
+										about
+									</a>
+								</td>
 								<td style="padding-left: 10px"></td>
 								<td
 									style="padding: 0; text-align: right">
