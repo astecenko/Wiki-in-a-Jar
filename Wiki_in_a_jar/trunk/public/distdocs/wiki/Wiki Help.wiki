@@ -26,4 +26,15 @@ You can still use wiki formatting in the notes section of you contacts. You can 
 === ... restore a page from the history ===
 The wiki keeps up to 3 additional versions besides the current one for a wiki page. They are all stored in the same folder as the wiki pages: ''./public/docs/wiki''. Should you wish to revert to an older version, just remove the number from the file name of the version that you would like to restore.
 
+=== ... use keyboard shortcuts ===
+* The wiki uses so called ''access keys'' for most of the common links (home, index, edit, save, etc.). To determine the access key for a link, move the mouse over it and wait for a tooltip, it will show the access key (if there is any).
+* Most browsers require you to press ''Alt'' in addition to the access key. So to use the access key for the search bar, ''f'', you would have to press ''Alt-f''.
+** Note that the tooltip lists the ''Alt'' key, but this could vary depending on what browser you use.
+
+=== ... search Google from the wiki ===
+Yet another secret of the search bar:
+* Start the query with a single dot and the search is redirected to Google.
+* That allows for quick web searches even if the wiki is set as the browser's home page.
+* You can use the access key '''f''' (for ''find'') to focus the search bar. Most browsers use the ''Alt'' key to activate an access key (e.g. ''Alt-f'' to activate the search bar).
+
 [[tags: metawiki help]]
