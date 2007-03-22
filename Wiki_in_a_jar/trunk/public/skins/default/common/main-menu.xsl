@@ -20,7 +20,7 @@
 					<form method="GET" action="/find/pages/">
 						<div id="search-bar">
 							<input id="search-txt" type="text"
-								name="query" accesskey="s" title="Find [Alt-f]" />
+								name="query" accesskey="f" title="Find [Alt-f]" />
 							<input id="search-btn" type="submit"
 								value="" title="Find [Alt-f]" />
 						</div>
