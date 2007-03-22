@@ -5,12 +5,12 @@
 
 	<main-menu>
 		<main-menu-entry selected="yes" value="home"/>
-		<main-menu-entry selected="no" value="index" link="/index/wiki"/>
+		<main-menu-entry selected="no" value="index" link="/index/wiki" accesskey="i" title="Index [Alt-i]"/>
 	</main-menu>
 
 	<sub-menu>
 		<edit-menu>edit</edit-menu>
-		<sub-menu-entry selected="no" value="admin" link="/admin/"/>
+		<sub-menu-entry selected="no" value="admin" link="/admin/" accesskey="a" title="admin [Alt-a]"/>
 	</sub-menu>
 
 	@content@

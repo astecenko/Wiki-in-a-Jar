@@ -4,14 +4,14 @@
 <page>
 
 	<main-menu>
-		<main-menu-entry selected="no" value="home" link="/wiki"/>
+		<main-menu-entry selected="no" value="home" link="/wiki" accesskey="h" title="Home [Alt-h]"/>
 		<main-menu-entry selected="yes" value="index"/>
 	</main-menu>
 
 	<sub-menu>
 		<sub-menu-entry selected="yes" value="wiki"/>
-		<sub-menu-entry selected="no" value="vcard" link="/index/vcard"/>
-		<sub-menu-entry selected="no" value="all" link="/index/all"/>
+		<sub-menu-entry selected="no" value="vcard" link="/index/vcard" accesskey="v" title="vcard [Alt-v]"/>
+		<sub-menu-entry selected="no" value="all" link="/index/all" accesskey="a" title="all [Alt-a]" />
 	</sub-menu>
 
 	@content@

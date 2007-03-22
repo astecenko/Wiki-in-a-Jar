@@ -27,7 +27,7 @@
 						select="normalize-space(editfield/content-id)" />
 				</xsl:attribute>
 			</input>
-			<input type="submit" value="Save" />
+			<input type="submit" value="Save" accesskey="s" title="Save [Alt-s]" />
 		</form>
 	</xsl:template>
 

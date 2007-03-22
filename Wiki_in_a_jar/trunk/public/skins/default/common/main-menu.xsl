@@ -12,6 +12,7 @@
 						height="24" />
 				</td>
 				<td style="padding-left: 10px"></td>
+				<xsl:apply-templates select="home-menu-entry" />
 				<xsl:apply-templates select="main-menu-entry" />
 				<xsl:apply-templates select="article-menu" />
 				<td width="100%"></td>
@@ -19,9 +20,9 @@
 					<form method="GET" action="/find/pages/">
 						<div id="search-bar">
 							<input id="search-txt" type="text"
-								name="query" />
+								name="query" accesskey="s" title="Search [Alt-s]" />
 							<input id="search-btn" type="submit"
-								value="" />
+								value="" title="Find [Alt-f]" />
 						</div>
 					</form>
 				</td>
@@ -71,12 +72,17 @@
 						<xsl:attribute name="href">
 							<xsl:value-of select="@link" />
 						</xsl:attribute>
+						<xsl:attribute name="title">
+							<xsl:value-of select="@title" />
+						</xsl:attribute>
+						<xsl:attribute name="accesskey">
+							<xsl:value-of select="@accesskey" />
+						</xsl:attribute>
 						<xsl:value-of select="@value" />
 					</a>
 				</td>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-
 
 </xsl:stylesheet>

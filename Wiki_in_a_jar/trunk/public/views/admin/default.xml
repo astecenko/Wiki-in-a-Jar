@@ -4,8 +4,8 @@
 <page>
 
 	<main-menu>
-		<main-menu-entry selected="no" value="home" link="/wiki"/>
-		<main-menu-entry selected="no" value="index" link="/index/wiki"/>
+		<main-menu-entry selected="no" value="home" link="/wiki" accesskey="h" title="Home [Alt-h]"/>
+		<main-menu-entry selected="no" value="index" link="/index/wiki" accesskey="i" title="Index [Alt-i]"/>
 		<main-menu-entry selected="yes" value="admin"/>
 	</main-menu>
 
