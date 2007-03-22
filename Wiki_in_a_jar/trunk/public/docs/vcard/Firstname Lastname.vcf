@@ -9,6 +9,7 @@ TEL;WORK;VOICE:business phone
 TEL;HOME;VOICE:home phone
 TEL;CELL;VOICE:cell phone
 TEL;WORK;FAX:fax
+TEL;FAX:
 ADR;WORK:;;1234 Street;City;State;ZIP;Country
 LABEL;WORK;ENCODING=QUOTED-PRINTABLE:1234 Street=0D=0ACity, State ZIP=0D=0ACountry
 BDAY:20050501
