@@ -45,6 +45,7 @@ public class ControllerResponse {
 	private static final int HTML_JUST_FINE = 0;
 
 	public static final int HTTP_REDIRECT_FOUND = 302;
+	public static final int HTTP_EXTERNAL_REDIRECT_FOUND = -302;
 
 	private static Hashtable mimeTypeByExtension = new Hashtable();
 	static {

@@ -101,8 +101,26 @@ public class Request {
 				ERROR_VIEW, COMMON_CONTROLLER);
 	}
 
+	/**
+	 * Creates redirect to local page. Performs URL encoding on given url.
+	 * 
+	 * @param url
+	 * @return
+	 */
 	public ControllerResponse redirect(String url) {
 		return new ControllerResponse(ControllerResponse.HTTP_REDIRECT_FOUND,
 				url);
+	}
+
+	/**
+	 * Creates redirect to external web page. No URL encoding will be performed
+	 * on the given URL.
+	 * 
+	 * @param url
+	 * @return
+	 */
+	public ControllerResponse externalRedirect(String url) {
+		return new ControllerResponse(
+				ControllerResponse.HTTP_EXTERNAL_REDIRECT_FOUND, url);
 	}
 }

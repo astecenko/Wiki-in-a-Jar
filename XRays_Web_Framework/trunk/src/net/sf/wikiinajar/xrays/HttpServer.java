@@ -40,7 +40,7 @@ import java.util.regex.Matcher;
 /**
  * 
  * @author rico_g AT users DOT sourceforge DOT net
- *
+ * 
  */
 public class HttpServer extends NanoHTTPD {
 
@@ -120,7 +120,8 @@ public class HttpServer extends NanoHTTPD {
 		} catch (Exception e) {
 			return getErrorResponse("Trouble invoking action: " + fullName
 					+ " Message: " + e.getMessage()
-					+ "\n<h2>Stack Trace</h2>\n<pre>" + stackTrace(e) + "</pre>");
+					+ "\n<h2>Stack Trace</h2>\n<pre>" + stackTrace(e)
+					+ "</pre>");
 		}
 	}
 
@@ -134,9 +135,14 @@ public class HttpServer extends NanoHTTPD {
 
 	private Response handleError(ControllerResponse response) {
 		if (response.getErrorCode() == ControllerResponse.HTTP_REDIRECT_FOUND) {
-			InputStream is = null;
-			Response r = new Response(HTTP_REDIRECT_FOUND, MIME_HTML, is);
+			Response r = new Response(HTTP_REDIRECT_FOUND, MIME_HTML,
+					(InputStream) null);
 			r.header.put("Location", encodeUri(response.getResourceName()));
+			return r;
+		} else if (response.getErrorCode() == ControllerResponse.HTTP_EXTERNAL_REDIRECT_FOUND) {
+			Response r = new Response(HTTP_REDIRECT_FOUND, MIME_HTML,
+					(InputStream) null);
+			r.header.put("Location", response.getResourceName());
 			return r;
 		} else {
 			return getErrorResponse(response.getResourceName());
