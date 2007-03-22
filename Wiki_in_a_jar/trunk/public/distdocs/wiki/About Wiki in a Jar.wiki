@@ -1,6 +1,6 @@
 ''Wiki in a Jar'' is a small Wiki written in Java with great focus on simplicity. It is intended to run on a USB stick as a replacement for a paper note- and address book as a Personal Information Manager (PIM). It supports vcard (vcf) contact files.
 
-* '''Wiki in a Jar Version:''' 0.6 03/16/2007
+* '''Wiki in a Jar Version:''' @VERSION@
 
 == License ==
 * ''Wiki in a Jar'' is distributed under the GNU General Public License (GPL). More details here: http://www.gnu.org/copyleft/gpl.html
