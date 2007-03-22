@@ -17,10 +17,12 @@
 
 	<property name="build" value="build" />
 	<property name="dist" value="dist" />
-	
-	<property name="dist.version" value="0.6"/>
-	
-	<tstamp><format property="build.date" pattern="yyyyMMdd"/></tstamp>
+
+	<property name="dist.version" value="0.6" />
+
+	<tstamp>
+		<format property="build.date" pattern="yyyyMMdd" />
+	</tstamp>
 
 	<!-- ================================= 
           target: clean              
@@ -41,13 +43,21 @@
           target: dist              
          ================================= -->
 	<target name="dist" depends="build" description="Creates the binary distibution">
+		<copy file="public/distdocs/wiki/About Wiki in a Jar.wiki" tofile="${build}/About Wiki in a Jar.wiki" filtering="true">
+			<filterset>
+				<filter token="VERSION" value="${dist.version} ${build.date}" />
+			</filterset>
+		</copy>
 		<zip destfile="${dist}/WikiInAJar-${dist.version}-${build.date}-bin.zip">
 			<zipfileset file="bin/start.cmd" prefix="wiki.in.a.jar/bin" />
 			<zipfileset file="bin/start.sh" filemode="755" prefix="wiki.in.a.jar/bin" />
 			<zipfileset file="${build}/wiki.in.a.jar" prefix="wiki.in.a.jar" />
 			<zipfileset dir="public/skins" prefix="wiki.in.a.jar/public/skins" />
 			<zipfileset dir="public/views" prefix="wiki.in.a.jar/public/views" />
-			<zipfileset dir="public/distdocs" prefix="wiki.in.a.jar/public/docs" />
+			<zipfileset dir="public/distdocs" prefix="wiki.in.a.jar/public/docs">
+				<exclude name="**/About Wiki in a Jar.wiki" />
+			</zipfileset>
+			<zipfileset file="${build}/About Wiki in a Jar.wiki" prefix="wiki.in.a.jar/public/docs/wiki" />
 		</zip>
 
 	</target>
