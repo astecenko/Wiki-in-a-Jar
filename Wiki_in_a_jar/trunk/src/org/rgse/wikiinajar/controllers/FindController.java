@@ -22,6 +22,8 @@
 package org.rgse.wikiinajar.controllers;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -40,6 +42,7 @@ import net.sf.wikiinajar.xrays.Request;
  */
 public class FindController {
 
+	private static final String GOOGLE_QUERY = "http://www.google.com/search?q=";
 	private static final String QUERY = "query";
 
 	public ControllerResponse pagesAction(Request request) throws IOException {
@@ -48,6 +51,9 @@ public class FindController {
 			return request.errorResponse("Empty query");
 		}
 		query = query.trim();
+		if (query.startsWith(".")) {
+			return request.externalRedirect(constructExternalQuery(query.substring(1)));
+		}
 		List searchTokens = split(query, ", /");
 		if (searchTokens.isEmpty()) {
 			return request.errorResponse("Empty query");
@@ -56,6 +62,14 @@ public class FindController {
 		TagTree tree = new TagTree(searchTokens, true);
 		ShowTagTreeView view = new ShowTagTreeView(tree);
 		return request.xmlResponse(view.toXml());
+	}
+
+	private String constructExternalQuery(String query) {
+		try {
+			return GOOGLE_QUERY + URLEncoder.encode(query, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return GOOGLE_QUERY + query;
+		}
 	}
 
 	private List split(String text, String delim) {
