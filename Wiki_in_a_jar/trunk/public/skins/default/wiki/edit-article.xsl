@@ -12,7 +12,7 @@
 			onclick="javascript:w = window.open('/public/skins/default/common/formatting.htm','formattinghelp', config='height=300,width=300, toolbar=no, menubar=no, scrollbars=yes, resizable=yes, location=no, directories=no, status=no'); w.focus();return false;">
 			Formatting help
 		</a>
-		<form method="POST">
+		<form method="POST" name="editform">
 			<xsl:attribute name="action">
 				/wiki/save/
 				<xsl:value-of
@@ -27,7 +27,13 @@
 						select="normalize-space(editfield/content-id)" />
 				</xsl:attribute>
 			</input>
-			<input type="submit" value="Save" accesskey="s" title="Save [Alt-s]" />
+			<input type="submit" value="Save" accesskey="s"
+				title="Save [Alt-s]" />
+			<script language="javascript">
+				<!-- 
+					document.editform.article-content.focus();
+					// -->
+			</script>
 		</form>
 	</xsl:template>
 
