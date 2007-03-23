@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="/public/skins/default/master.xsl"?>
+
+<page>
+
+	<main-menu>
+		<main-menu-entry selected="no" value="home" link="/wiki" accesskey="h" title="Home [Alt-h]" />
+		<main-menu-entry selected="no" value="index" link="/index/wiki" accesskey="i" title="Index [Alt-i]"/>
+	</main-menu>
+
+	@content@
+
+	<footer />
+
+</page>
