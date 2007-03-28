@@ -91,8 +91,8 @@ public class TextUtils {
 	 * @return
 	 */
 	public static String escapeHtmlChars(String string) {
-		return string.replaceAll("<", "&lt;").replace(">", "&gt;").replace("&",
-				"&amp;");
+		return string.replace("&", "&amp;").replaceAll("<", "&lt;").replace(
+				">", "&gt;");
 	}
 
 	/**
