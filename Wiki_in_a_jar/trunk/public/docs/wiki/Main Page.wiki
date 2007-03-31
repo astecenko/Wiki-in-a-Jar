@@ -8,6 +8,11 @@
 * [[Non existing page]]
 * Invalid link: [[Test!/?;"'*]]
 
+= To do Test =
+* [ ] open item
+* [!] important item
+* [x] done item
+
 = Special Characters =
 * !
 * @

@@ -7,6 +7,10 @@ Some text.
 # Ordered list item
 ## More...
 
+* [ ] open to do list item
+* [!] important open to do list item
+* [x] done to do list item
+
 Simple, isn't it?
  Always remember you're unique, just like everyone else.
 ----
