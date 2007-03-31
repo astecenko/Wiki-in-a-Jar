@@ -214,3 +214,27 @@ ul {
     margin-top: 0;
     margin-bottom: 0;
 }
+
+/* TODO LIST ITEMS */
+
+#todo-done {
+	list-style-type: none;
+	background: url(/public/skins/default/common/cbx_x.gif) no-repeat left;
+	margin-left: 0;
+	padding-left: 15px;
+	text-decoration: line-through;
+}
+
+#todo-imp {
+	list-style-type: none;
+	background: url(/public/skins/default/common/cbx_imp.gif) no-repeat left;
+	margin-left: 0;
+	padding-left: 15px;
+}
+
+#todo-normal {
+	list-style-type: none;
+	background: url(/public/skins/default/common/cbx.gif) no-repeat left;
+	margin-left: 0;
+	padding-left: 15px;
+}
