@@ -5,6 +5,13 @@ Go take a look, it's all under: '''public/docs'''. That's the place you want to 
 == How to... ==
 === ... create a new wiki page ===
 * Just create a link to the new page from any other wiki page. If you click on a link to a page that does not exist, it will be created.
+=== ... turn a wiki page into an event ===
+* All you need to do is add the date of the format ''yyyy-mm-dd'' somewhere in the title
+* Example page title: 
+** ''2007-03-12 Meeting minutes for sales meeting''
+** ''Jim's Wedding 2007-06-23''
+* The wiki article is then recognized as event (a calendar for that month is shown in the top right corner for that article)
+
 === ... create a new vCard contact ===
 * Export your contact(s) from you favorite e-mail application to the ''vCard'' (.vcf) format and drop the files in ''public/docs/vcard''.
 
