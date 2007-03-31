@@ -36,6 +36,11 @@ import org.rgse.wikiinajar.models.TagTree.TreeItem;
 
 import junit.framework.TestCase;
 
+/**
+ * 
+ * @author rico_g AT users DOT sourceforge DOT net
+ *
+ */
 public class TagTreeTest extends TestCase {
 
 	private static final String tagTree = "number/small/1/--/2/--/--/big/100";
