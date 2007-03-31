@@ -7,6 +7,7 @@
 		<main-menu-entry selected="no" value="home" link="/wiki"
 			accesskey="h" title="Home [Alt-h]" />
 		<main-menu-entry selected="yes" value="index" />
+		<main-menu-entry selected="no" value="calendar" link="/calendar" accesskey="c" title="Calendar [Alt-c]"/>
 	</main-menu>
 
 	<sub-menu>
