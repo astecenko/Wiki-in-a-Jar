@@ -28,6 +28,11 @@ import java.util.Set;
 
 import junit.framework.TestCase;
 
+/**
+ * 
+ * @author rico_g AT users DOT sourceforge DOT net
+ *
+ */
 public class TextUtilsTest extends TestCase {
 
 	public void testGetAllMatches() {
