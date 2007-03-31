@@ -31,7 +31,7 @@ public class StrongestFilter implements Filter {
      * @see org.rgse.render.filter.Filter#filter(java.lang.String)
      */
     public String filter(String text) {
-        return  text.replaceAll("'{4}([^']*?)'{4}", "<i><b>$1</b></i>");
+        return  text.replaceAll("'{4}(.*?)'{4}", "<i><b>$1</b></i>");
     }
 
 }

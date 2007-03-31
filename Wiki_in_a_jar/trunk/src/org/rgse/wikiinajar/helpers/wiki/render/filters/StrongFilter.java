@@ -33,7 +33,7 @@ public class StrongFilter implements  Filter {
      * @see org.rgse.render.filter.Filter#filter(java.lang.String)
      */
     public String filter(String text) {
-       return  text.replaceAll("'{2}([^']*?)'{2}", "<i>$1</i>");
+       return  text.replaceAll("'{2}(.*?)'{2}", "<i>$1</i>");
     }
 
     

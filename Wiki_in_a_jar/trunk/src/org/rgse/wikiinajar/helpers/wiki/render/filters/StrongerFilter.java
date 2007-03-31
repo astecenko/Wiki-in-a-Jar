@@ -31,7 +31,7 @@ public class StrongerFilter implements Filter {
      * @see org.rgse.render.filter.Filter#filter(java.lang.String)
      */
     public String filter(String text) {
-        return  text.replaceAll("'{3}([^']*?)'{3}", "<b>$1</b>");
+        return  text.replaceAll("'{3}(.*?)'{3}", "<b>$1</b>");
     }
 
 }
