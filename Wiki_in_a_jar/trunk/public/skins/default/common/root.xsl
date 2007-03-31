@@ -33,6 +33,8 @@
 				<div id="main-content">
 					<xsl:apply-templates select="/page/sub-menu" />
 					<div id="content">
+						<xsl:apply-templates
+							select="/page/article/calendar" />
 						<div id="inner">
 
 							<xsl:apply-templates
@@ -46,6 +48,8 @@
 								select="/page/article/vcard" />
 							<xsl:apply-templates
 								select="/page/admin-page" />
+							<xsl:apply-templates
+								select="/page/article/events" />
 						</div>
 						<xsl:apply-templates
 							select="/page/article/tag-list" />

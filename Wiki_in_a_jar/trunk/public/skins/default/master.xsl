@@ -13,5 +13,6 @@
 	<xsl:include href="wiki/edit-article.xsl" />
 	<xsl:include href="vcard/vcard.xsl" />
 	<xsl:include href="tagtree/tagtree.xsl" />
+	<xsl:include href="calendar/calendar.xsl" />
 
 </xsl:stylesheet>
