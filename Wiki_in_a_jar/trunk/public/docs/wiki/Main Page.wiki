@@ -1,1 +1,28 @@
 * Main Page of test doc root
+* [[New page]]
+* [[2007-03-10 Some title]]
+* [[2007-03-31 Some title]]
+* [[2008-04-10 Some title]]
+
+= Links Test =
+* [[Non existing page]]
+* Invalid link: [[Test!/?;"'*]]
+
+= Special Characters =
+* !
+* @
+* #
+* $
+* %
+* ^
+* &
+* *
+* ;
+* :* 
+* '
+* <
+* >
+* /* 
+* ?* 
+* \
+* |
