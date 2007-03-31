@@ -21,16 +21,20 @@
 
 package org.rgse.wikiinajar.views.wiki;
 
+import java.io.IOException;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.rgse.wikiinajar.helpers.TextUtils;
-import org.rgse.wikiinajar.models.WikiArticle;
-
 import net.sf.wikiinajar.xrays.View;
 import net.sf.wikiinajar.xrays.Xml;
+
+import org.rgse.wikiinajar.helpers.TextUtils;
+import org.rgse.wikiinajar.models.Month;
+import org.rgse.wikiinajar.models.WikiArticle;
+import org.rgse.wikiinajar.views.calendar.MonthView;
 
 /**
  * @author rico_g AT users DOT sourceforge DOT net
@@ -51,13 +55,25 @@ public class ShowWikiArticleView implements View {
 	 */
 	public Xml toXml() {
 		Xml xml = new Xml("article");
-		
+
+		Date articleDueDate = article.getDueDate();
+		if (articleDueDate != null) {
+			Month month = new Month(articleDueDate);
+			try {
+				month.loadEvents();
+			} catch (IOException e) {
+				// ignore
+			}
+			MonthView monthView = new MonthView(month);
+			monthView.appendCalendar(xml);
+		}
 		addTags(xml.tag("tag-list"), article);
 		xml.tag("id").cdata(article.getTitle());
 		xml.tag("show-article").tag("content", article.getContent());
+
 		return xml;
 	}
-	
+
 	private void addTags(Xml xml, WikiArticle article) {
 		List sorted = new LinkedList(article.listTags());
 		Collections.sort(sorted);
@@ -68,8 +84,9 @@ public class ShowWikiArticleView implements View {
 	}
 
 	/**
-	 * Returns a link that points to the page to show the specified
-	 * wiki article.
+	 * Returns a link that points to the page to show the specified wiki
+	 * article.
+	 * 
 	 * @param identifier
 	 * @return
 	 */
