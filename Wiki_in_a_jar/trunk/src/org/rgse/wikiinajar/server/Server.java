@@ -31,6 +31,7 @@ import net.sf.wikiinajar.xrays.HttpServer;
 import net.sf.wikiinajar.xrays.PublicController;
 
 import org.rgse.wikiinajar.controllers.AdminController;
+import org.rgse.wikiinajar.controllers.CalendarController;
 import org.rgse.wikiinajar.controllers.FindController;
 import org.rgse.wikiinajar.controllers.IndexController;
 import org.rgse.wikiinajar.controllers.TagController;
@@ -53,11 +54,12 @@ public class Server {
 		try {
 			// Before we start, let's check if the docroot is avalable:
 			if (!PublicController.publicDocrootExists()) {
-				System.err.println("The directory does not exist: "
-						+ PublicController.PUBLIC_ROOT);
-				System.err.println("Current working directory is: "
-						+ new File(".").getAbsolutePath());
-				System.err.println("Wiki server stopped.");
+				String msg = "The directory does not exist: "
+						+ PublicController.PUBLIC_ROOT
+						+ "Current working directory is: "
+						+ new File(".").getAbsolutePath()
+						+ "Wiki server stopped.";
+				logError(msg, null, ERROR_LOG);
 				System.exit(1);
 			}
 			ActionMapping mapping = new ActionMapping();
@@ -67,6 +69,7 @@ public class Server {
 			mapping.register(FindController.class);
 			mapping.register(IndexController.class);
 			mapping.register(AdminController.class);
+			mapping.register(CalendarController.class);
 
 			int port = getPort(args);
 			port = port != -1 ? port : 3003;
@@ -105,6 +108,7 @@ public class Server {
 			}
 		} catch (Throwable t2) {
 			// error logging, print original cause:
+			System.err.println(msg);
 			t.printStackTrace();
 		}
 	}
