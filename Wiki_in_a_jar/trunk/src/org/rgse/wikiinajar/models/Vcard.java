@@ -24,8 +24,10 @@ package org.rgse.wikiinajar.models;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -35,6 +37,7 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
+import org.rgse.wikiinajar.helpers.DateUtils;
 import org.rgse.wikiinajar.helpers.TextUtils;
 import org.rgse.wikiinajar.helpers.vcard.MimeConverter;
 import org.rgse.wikiinajar.helpers.vcard.Utils;
@@ -85,7 +88,20 @@ public class Vcard implements ITaggable {
 			parse(rawContent);
 			tags.addAll(TextUtils.extractTags(rawContent));
 			tags.addAll(categoriesAsTags());
+			tags.addAll(extractBirthdayTags());
 		}
+	}
+
+	private Collection extractBirthdayTags() {
+		List result = new LinkedList();
+		Date bDay = getBirthday();
+		if (bDay != null) {
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(bDay);
+			result.add(DateUtils.MONTHS[cal.get(Calendar.MONTH)].toLowerCase());
+			result.add(cal.get(Calendar.YEAR) + "");
+		}
+		return result;
 	}
 
 	/**
@@ -452,14 +468,50 @@ public class Vcard implements ITaggable {
 	 * @see test.webapp.models.ITaggable#isTagged(java.lang.String, boolean)
 	 */
 	public boolean isTagged(String tag, boolean matchFullText) {
-		if (matchFullText) {
-			return rawContent.toLowerCase().contains(tag.toLowerCase());
-		} else {
-			return tags.contains(tag.toLowerCase());
-		}
+		return tags.contains(tag.toLowerCase())
+				|| (matchFullText && rawContent.toLowerCase().contains(
+						tag.toLowerCase()));
 	}
 
 	public Collection listTags() {
 		return tags;
+	}
+
+	/**
+	 * Determines if the contact's birthday is set and if it is in the specified
+	 * month.
+	 * 
+	 * @param month
+	 *            As defined in {@link Calendar}
+	 * @return <code>true</code> if the contact's birthday is in the specified
+	 *         month.
+	 */
+	public boolean isBirthdayInMonth(int month) {
+		Date bday = getBirthday();
+		if (bday != null) {
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(bday);
+			return cal.get(Calendar.MONTH) == month;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the birthday for this contact.
+	 * 
+	 * @return the birthday or <code>null</code> if the value is not set or
+	 *         the date could not be parsed.
+	 */
+	public Date getBirthday() {
+		for (Iterator iter = properties.iterator(); iter.hasNext();) {
+			VCardProperty prop = (VCardProperty) iter.next();
+			if (prop.getName().equals("BDAY")) {
+				Date bday = DateUtils.parseDate(prop.getValue());
+				if (bday != null) {
+					return bday;
+				}
+			}
+		}
+		return null;
 	}
 }

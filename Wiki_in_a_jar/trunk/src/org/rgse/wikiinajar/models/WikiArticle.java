@@ -23,12 +23,18 @@ package org.rgse.wikiinajar.models;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import org.rgse.wikiinajar.helpers.DateUtils;
 import org.rgse.wikiinajar.helpers.TextUtils;
 import org.rgse.wikiinajar.helpers.wiki.render.RenderEngine;
 
@@ -84,9 +90,28 @@ public class WikiArticle implements ITaggable {
 			this.rawContent = TextUtils.readTextFile(file);
 			this.exists = true;
 			this.tags.addAll(TextUtils.extractTags(rawContent));
+			this.tags.addAll(extractEventTags());
 		} else {
 			this.exists = false;
 		}
+	}
+
+	/**
+	 * If this article is an event, the month and year are used as tags
+	 * automatically.
+	 * 
+	 * @return
+	 */
+	private Collection extractEventTags() {
+		List result = new LinkedList();
+		Date dueDate = getDueDate();
+		if (dueDate != null) {
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(dueDate);
+			result.add(DateUtils.MONTHS[cal.get(Calendar.MONTH)].toLowerCase());
+			result.add(cal.get(Calendar.YEAR) + "");
+		}
+		return result;
 	}
 
 	/**
@@ -204,11 +229,9 @@ public class WikiArticle implements ITaggable {
 	 * @see test.webapp.models.ITaggable#isTagged(java.lang.String, boolean)
 	 */
 	public boolean isTagged(String tag, boolean matchFullText) {
-		if (matchFullText) {
-			return rawContent.toLowerCase().contains(tag.toLowerCase());
-		} else {
-			return tags.contains(tag.toLowerCase());
-		}
+		return tags.contains(tag.toLowerCase())
+				|| (matchFullText && rawContent.toLowerCase().contains(
+						tag.toLowerCase()));
 	}
 
 	/*
@@ -238,6 +261,52 @@ public class WikiArticle implements ITaggable {
 	 */
 	public Set listTags() {
 		return tags;
+	}
+
+	/**
+	 * Determines if the title contains a date and returns it.
+	 * 
+	 * @return the date or <code>null</code> if no date could be extracted.
+	 */
+	public Date getDueDate() {
+		return extractDueDate(title);
+	}
+
+	/**
+	 * Determines if the title contains a date and returns it.
+	 * 
+	 * @param title
+	 *            the title
+	 * @return the date or <code>null</code> if no date could be extracted.
+	 */
+	protected Date extractDueDate(String title) {
+		if (title == null) {
+			return null;
+		}
+		Pattern p = Pattern.compile(".*(\\d{4})-(\\d{2})-(\\d{2}).*");
+		Matcher m = p.matcher(title);
+
+		Date result = null;
+		if (m.find()) {
+			Calendar cal = Calendar.getInstance();
+			cal.set(Calendar.YEAR, toInt(m.group(1)));
+			cal.set(Calendar.MONTH, toInt(m.group(2)) - 1);
+			cal.set(Calendar.DAY_OF_MONTH, toInt(m.group(3)));
+			cal.set(Calendar.HOUR_OF_DAY, 0);
+			cal.set(Calendar.MINUTE, 0);
+			cal.set(Calendar.SECOND, 0);
+			cal.set(Calendar.MILLISECOND, 0);
+			result = cal.getTime();
+		}
+		return result;
+	}
+
+	private int toInt(String string) {
+		try {
+			return Integer.parseInt(string);
+		} catch (NumberFormatException e) {
+			return -1;
+		}
 	}
 
 }
