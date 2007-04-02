@@ -118,7 +118,7 @@ public class Vcard implements ITaggable {
 				StringTokenizer tokens = new StringTokenizer(prop.getValue(),
 						", ");
 				while (tokens.hasMoreTokens()) {
-					result.add(tokens.nextToken().toLowerCase());
+					result.add(tokens.nextToken().trim().toLowerCase());
 				}
 			}
 		}

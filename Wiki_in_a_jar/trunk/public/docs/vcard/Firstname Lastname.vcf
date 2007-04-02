@@ -5,6 +5,7 @@ FN:Firstname Lastname
 ORG:Company
 BDAY:1981-03-31
 TITLE:Job title
+CATEGORIES:SampleCategory
 NOTE;ENCODING=QUOTED-PRINTABLE:Some ''notes'' [[wiki:Main Page]] [[tags:metawiki]]=0D=0A
 TEL;WORK;VOICE:business phone
 TEL;HOME;VOICE:home phone
