@@ -8,6 +8,8 @@ https://sourceforge.net/projects/wiki-in-a-jar/
 
 * Version 0.7.1 (TBD)
 - Fixed bug: Last vCard category was not recognized in tag tree
+- Fixed bug: #1701702 Search doesn't search page names
+- Minor: Make better use of screen real estate (IE still has minor layout issues)
 
 * Version 0.7 (03/31/2007):
 - NEW: a calendar for each month listing birthdays of your contacts
