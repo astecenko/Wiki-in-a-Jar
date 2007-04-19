@@ -229,9 +229,10 @@ public class WikiArticle implements ITaggable {
 	 * @see test.webapp.models.ITaggable#isTagged(java.lang.String, boolean)
 	 */
 	public boolean isTagged(String tag, boolean matchFullText) {
-		return tags.contains(tag.toLowerCase())
-				|| (matchFullText && rawContent.toLowerCase().contains(
-						tag.toLowerCase()));
+		tag = tag.toLowerCase();
+		return tags.contains(tag)
+				|| (matchFullText && (rawContent.toLowerCase().contains(
+						tag) || title.toLowerCase().contains(tag)));
 	}
 
 	/*
