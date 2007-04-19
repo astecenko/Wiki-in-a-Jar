@@ -12,17 +12,15 @@ body {
 }
 
 #header-logo{
-	margin: 0 auto;
-	width: 800px;
+	margin: 0 20px;
 	height: 45px;
 	color: #FFF;
 	vertical-align: middle;
 }
 
 #header-menu {
-	margin: 0 auto;
+	margin: 0 20px;
 	padding: 0;
-	width: 800px;
 	height: 24px;
 	background-color:	#5F76BC;
 }
@@ -58,9 +56,8 @@ body {
 
 #sub-menu {
 	text-align: left;
-	margin: 0 auto;
+	margin: 0 20px;
 	padding: 0.2em 0;
-	width: 800px;
 	border-bottom: 1px solid #DBCFBD;
 	background-color: #FFF;
 	font-size: 9pt;
@@ -77,9 +74,8 @@ body {
 
 #content {
 	text-align: left;
-	margin: 0 auto;
+	margin: 0 20px;
 	padding: 0;
-	width: 800px;
 	background-color: #FFF;
 }
 
@@ -136,9 +132,8 @@ ol, ul, li {
 }
 
 #footer {
-    margin: 0 auto;
+    margin: 0 20px;
 	padding: 0;
-	width: 800px;
 	height: 45px;
 	background-color:	#EFBF77;
 }
