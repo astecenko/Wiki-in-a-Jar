@@ -31,34 +31,43 @@ import junit.framework.TestCase;
  */
 public class WikiLinkTest extends TestCase {
 
+	private static final String DEFAULT_NAMESPACE = "vcard";
+
 	/**
 	 * Test method for
 	 * {@link org.rgse.wikiinajar.helpers.wiki.render.WikiLink#WikiLink(java.lang.String)}.
 	 */
-	public void testWikiLink() {
-		assertWikiLink("wiki", "Main Page","wiki:Main Page");
+	public void testWikiLinkBasics() {
+		assertWikiLink("wiki", "Main Page", "Main Page", "wiki:Main Page");
 
-		assertWikiLink("wiki", "", "wiki:");
+		assertWikiLink("wiki", "", "", "wiki:");
+
+		assertWikiLink(DEFAULT_NAMESPACE, "", "", ":");
+
+		assertWikiLink(DEFAULT_NAMESPACE, "Main Page", "Main Page", "Main Page ");
+
+		assertWikiLink("wiki", "Main Page", "Main Page", "wiki: Main Page ");
+
+		assertWikiLink("wiki", "Main Page", "Main Page", " wiki : Main Page ");
+	}
+	
+	public void testWikiLinkNames() {
+		assertWikiLink("wiki", "Main Page", "Title", "wiki: Main Page | Title ");
 		
-		assertWikiLink("", "", ":");
+		assertWikiLink("wiki", "Main Page", "Main Page", "wiki: Main Page |  ");
 		
-		assertWikiLink(null, "Main Page", "Main Page ");
+		assertWikiLink("wiki", "", "Title", "wiki: | Title  ");
 		
-		assertWikiLink("wiki", "Main Page", "wiki: Main Page ");
-		
-		assertWikiLink("wiki", "Main Page", " wiki : Main Page ");
-		
+		assertWikiLink(DEFAULT_NAMESPACE, "Main Page", "Title", " Main Page | Title  ");
 	}
 
-	private void assertWikiLink(String namespace, String link, String origLink) {
+	private void assertWikiLink(String namespace, String link, String title,
+			String origLink) {
 		WikiLink fixture = new WikiLink();
-		String[] tokens = fixture.splitByNamespace(origLink);
-		if (namespace == null) {
-			assertNull(tokens[0]);
-		} else {
-			assertEquals(namespace, tokens[0]);
-		}
+		String[] tokens = fixture.splitWikiLink(origLink, DEFAULT_NAMESPACE);
+		assertEquals(namespace, tokens[0]);
 		assertEquals(link, tokens[1]);
+		assertEquals(title, tokens[2]);
 
 	}
 

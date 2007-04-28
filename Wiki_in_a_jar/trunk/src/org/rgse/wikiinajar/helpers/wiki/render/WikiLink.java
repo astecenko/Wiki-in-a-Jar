@@ -28,8 +28,18 @@ import org.rgse.wikiinajar.views.wiki.EditWikiArticleView;
 import org.rgse.wikiinajar.views.wiki.ShowWikiArticleView;
 
 /**
- * Represents a wiki style link. A link has two components: an optional
- * namespace and the required page name. Both are separated by a colon.
+ * Represents a wiki style link. A link has three components: an optional
+ * namespace, the required page name, and an optional link name.
+ * 
+ * <pre>
+ * Example:
+ * 
+ * [[tagtree:  /all/wiki|All wiki pages]]  is split into:
+ * - namespace: &quot;tagtree:
+ * - page name: &quot;/all/wiki&quot;
+ * - link name: &quot;All wiki pages&quot;
+ * </pre>
+ * 
  * <p>
  * Additionally, a wiki link can be invisible, meaning it won't be embedded in
  * the actual page (e.g. tags).
@@ -53,19 +63,23 @@ public class WikiLink {
 
 	public static final String SIDEBAR_NAMESPACE = "sidebar";
 
+	private static final String LINK_NAME_SEP = "|";
+
 	private String link;
 
 	private String namespace;
 
 	private String htmlLink;
 
+	private String linkName;
+
 	public WikiLink(String plainLink, String defaultNamespace) {
-		//reverse html escaping
+		// reverse html escaping
 		plainLink = plainLink.replaceAll("&amp;", "&");
-		String[] tokens = splitByNamespace(plainLink);
-		this.namespace = tokens[0] != null && tokens[0].length() > 0 ? tokens[0]
-				: defaultNamespace;
+		String[] tokens = splitWikiLink(plainLink, defaultNamespace);
+		this.namespace = tokens[0];
 		this.link = tokens[1];
+		this.linkName = tokens[2];
 		this.htmlLink = determineHtmlLink();
 	}
 
@@ -78,26 +92,27 @@ public class WikiLink {
 	private String determineHtmlLink() {
 		String result = "";
 		String encLink = TextUtils.escapeHtmlChars(link);
+		String encName = TextUtils.escapeHtmlChars(linkName);
 		if ((WIKI_NAMESPACE.equals(namespace) || VCARD_NAMESPACE
 				.equals(namespace))
 				&& (containsIllegalChars(namespace) || containsIllegalChars(link))) {
 			result = "[[" + encLink
-					+ "]] (Link must not contain: \\/:*?\"&lt;&gt;|) ";
+					+ "]] (Link must not contain: \\*/:?\"&lt;&gt;|) ";
 		} else if (WIKI_NAMESPACE.equalsIgnoreCase(this.namespace)) {
 			if (WikiArticle.exists(link)) {
-				result = "<a href=\"" + ShowWikiArticleView.getLink(link)
-						+ "\">" + encLink + "</a>";
+				result = makeUrl(ShowWikiArticleView.getLink(link), encName,
+						namespace, encLink, false);
 			} else {
-				result = "<a id=\"editlink\" href=\"" + EditWikiArticleView.getLink(link)
-						+ "\">" + encLink + "</a>";
+				result = makeUrl(EditWikiArticleView.getLink(link), encName,
+						namespace, encLink, true);
 			}
 		} else if (VCARD_NAMESPACE.equalsIgnoreCase(namespace)) {
-			result = "<a href=\"" + ShowVcardView.getLink(link) + "\">" + link
-					+ "</a>";
+			result = makeUrl(ShowVcardView.getLink(link), encName, namespace,
+					link, false);
 
 		} else if (TAG_TREE_NAMESPACE.equalsIgnoreCase(namespace)) {
-			result = "<a href=\"" + ShowTagTreeView.getLink(link) + "\">"
-					+ encLink + "</a>";
+			result = makeUrl(ShowTagTreeView.getLink(link), encName, namespace,
+					encLink, false);
 		} else if (TAGS_NAMESPACE.equalsIgnoreCase(namespace)) {
 			// hide tags
 		} else if (SIDEBAR_NAMESPACE.equalsIgnoreCase(namespace)) {
@@ -106,6 +121,15 @@ public class WikiLink {
 			result = encLink + " (Unknown namespace: " + namespace + ") ";
 		}
 		return result;
+	}
+
+	private String makeUrl(String target, String linkName, String namespace,
+			String pageId, boolean isEditLink) {
+		String title = namespace + ": " + pageId
+				+ (isEditLink ? " (edit)" : "");
+
+		return "<a " + (isEditLink ? "id=\"editlink\"" : "") + " href=\""
+				+ target + "\" title=\"" + title + "\" >" + linkName + "</a>";
 	}
 
 	/**
@@ -141,14 +165,50 @@ public class WikiLink {
 	protected WikiLink() {
 	}
 
-	protected String[] splitByNamespace(String plainLink) {
+	/**
+	 * Splits a wiki link in up to 3 components: namespace, page name, link
+	 * name. For example:
+	 * 
+	 * <pre>
+	 * [[tagtree:  /all/wiki|All wiki pages]]  is split into:
+	 * - namespace: &quot;tagtree:
+	 * - page name: &quot;/all/wiki&quot;
+	 * - link name: &quot;All wiki pages&quot;
+	 * </pre>
+	 * 
+	 * @param plainLink
+	 *            The plain wiki formated link.
+	 * @param defaultNamespace
+	 *            The default namespace to use.
+	 * 
+	 * @return String array with 3 elements: namespace (0, defaults to default
+	 *         namespace), page name (1), link name (2, defaults to page name).
+	 */
+	protected String[] splitWikiLink(String plainLink, String defaultNamespace) {
+		String ns = null;
+		String pageName = null;
+		String linkName = null;
+
 		int index = plainLink.indexOf(NAMESPACE_SEP);
 		if (index != -1) {
-			return new String[] { plainLink.substring(0, index).trim(),
-					plainLink.substring(index + 1).trim() };
+			ns = plainLink.substring(0, index).trim();
+			plainLink = plainLink.substring(index + 1).trim();
 		} else {
-			return new String[] { null, plainLink.trim() };
+			ns = defaultNamespace;
 		}
+		index = plainLink.indexOf(LINK_NAME_SEP);
+		if (index != -1) {
+			pageName = plainLink.substring(0, index).trim();
+			linkName = plainLink.substring(index + 1).trim();
+		} else {
+			pageName = plainLink.trim();
+			linkName = pageName;
+		}
+		// quick sanity check:
+		linkName = linkName.length() > 0 ? linkName : pageName;
+		ns = ns.length() > 0 ? ns: defaultNamespace;
+		
+		return new String[] { ns, pageName, linkName };
 	}
 
 	/**
