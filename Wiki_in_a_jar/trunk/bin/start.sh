@@ -2,7 +2,7 @@
 
 cd ..
 
-java -jar wiki.in.a.jar 3003 &
+nohup java -jar wiki.in.a.jar 3003 &
 
 echo "Wiki server started"
 echo ""
