@@ -139,7 +139,11 @@ public class NanoHTTPD
 		{
 			this.status = status;
 			this.mimeType = mimeType;
-			this.data = new ByteArrayInputStream( txt.getBytes());
+			try {
+                this.data = new ByteArrayInputStream( txt.getBytes("UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                this.data = new ByteArrayInputStream( txt.getBytes());
+            }
 		}
 
 		/**
