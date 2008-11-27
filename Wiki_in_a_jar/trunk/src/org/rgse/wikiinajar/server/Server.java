@@ -34,6 +34,7 @@ import org.rgse.wikiinajar.controllers.AdminController;
 import org.rgse.wikiinajar.controllers.CalendarController;
 import org.rgse.wikiinajar.controllers.FindController;
 import org.rgse.wikiinajar.controllers.IndexController;
+import org.rgse.wikiinajar.controllers.TabController;
 import org.rgse.wikiinajar.controllers.TagController;
 import org.rgse.wikiinajar.controllers.VcardController;
 import org.rgse.wikiinajar.controllers.WikiController;
@@ -70,6 +71,7 @@ public class Server {
 			mapping.register(IndexController.class);
 			mapping.register(AdminController.class);
 			mapping.register(CalendarController.class);
+			mapping.register(TabController.class);
 
 			int port = getPort(args);
 			port = port != -1 ? port : 3003;
