@@ -67,7 +67,7 @@ public class Month {
 		calendar.set(Calendar.MONTH, month);
 		calendar.set(Calendar.YEAR, year);
 
-		for (int i = 1; i <= calendar.getMaximum(Calendar.DAY_OF_MONTH); i++) {
+		for (int i = 1; i <= calendar.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
 			calendar.set(Calendar.DAY_OF_MONTH, i);
 			days.add(new Day(i, calendar.get(Calendar.DAY_OF_WEEK)));
 		}
