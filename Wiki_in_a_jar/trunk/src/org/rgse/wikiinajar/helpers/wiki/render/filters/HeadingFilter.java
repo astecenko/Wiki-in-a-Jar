@@ -60,7 +60,10 @@ public class HeadingFilter extends LineByLineFilter {
                 String headingType = matcher.group();
                 line = line.trim();
                 if (line.endsWith(headingType)) {
-                    line = line.replaceAll(headingType, "");
+                    // remove leading & trailing =*
+                    line = line.substring(headingType.length());
+                    line = line.substring(0, line.length() - headingType.length());
+                    line = line.trim();
                     buffer.append("<h");
                     buffer.append(headingType.length());
                     buffer.append(">");
