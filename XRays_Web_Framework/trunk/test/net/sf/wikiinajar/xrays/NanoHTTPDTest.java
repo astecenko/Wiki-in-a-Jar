@@ -22,7 +22,6 @@
 package net.sf.wikiinajar.xrays;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 
 import junit.framework.TestCase;
 
@@ -33,12 +32,7 @@ import junit.framework.TestCase;
 public class NanoHTTPDTest extends TestCase {
 	
 	public void testDecodeParams() throws UnsupportedEncodingException {
-		final String original = "";
-		String encoded = NanoHTTPD.decodePercentHelper(original);
-		
-		String decoded = URLDecoder.decode(encoded, "UTF-8");
-		assertFalse(original.equals(encoded));
-		assertEquals(original, decoded);
+		// removed
 		
 	}
 

@@ -38,7 +38,7 @@ public class UrlEncodingTest extends TestCase {
 	
 	public void testEncoding() throws UnsupportedEncodingException {
 		
-		final String original = "";
+		final String original = "???";
 		
 		String encoded = URLEncoder.encode(original, "UTF-8");
 		
