@@ -23,12 +23,15 @@ package org.rgse.wikiinajar.helpers;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -46,10 +49,10 @@ public class TextUtils {
 	private static final String LINE_SEP = System.getProperty("line.separator",
 			"\n");
 
-	public static String readTextFile(File file) throws IOException {
-		BufferedReader reader = new BufferedReader(new FileReader(file));
+    public static String readTextFile(File file) throws IOException {
+        BufferedReader reader = new BufferedReader(new BufferedReader(new InputStreamReader(new FileInputStream(file), Charset.forName("UTF-8"))));
 
-		StringBuffer buffer = new StringBuffer();
+        StringBuffer buffer = new StringBuffer();
 		String line = null;
 		while ((line = reader.readLine()) != null) {
 			buffer.append(line).append(LINE_SEP);
@@ -58,11 +61,10 @@ public class TextUtils {
 		return buffer.toString();
 	}
 
-	public static void writeTextFile(String file, String articleContent)
-			throws IOException {
-		PrintWriter out = new PrintWriter(new FileWriter(file));
-		out.println(articleContent);
-		out.close();
+    public static void writeTextFile(String file, String articleContent) throws IOException {
+        PrintWriter out = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file), Charset.forName("UTF-8")));
+        out.println(articleContent);
+        out.close();
 		if (out.checkError()) {
 			throw new IOException("Error saving " + file);
 		}
