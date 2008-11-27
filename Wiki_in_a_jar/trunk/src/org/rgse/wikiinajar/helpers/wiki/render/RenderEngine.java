@@ -32,6 +32,7 @@ import org.rgse.wikiinajar.helpers.wiki.render.filters.SectionFilter;
 import org.rgse.wikiinajar.helpers.wiki.render.filters.StrongFilter;
 import org.rgse.wikiinajar.helpers.wiki.render.filters.StrongerFilter;
 import org.rgse.wikiinajar.helpers.wiki.render.filters.StrongestFilter;
+import org.rgse.wikiinajar.helpers.wiki.render.filters.TableFilter;
 import org.rgse.wikiinajar.helpers.wiki.render.filters.UrlFilter;
 import org.rgse.wikiinajar.helpers.wiki.render.filters.WikiLinkFilter;
 
@@ -76,6 +77,7 @@ public class RenderEngine {
 		filters.add(new StrongerFilter());
 		filters.add(new StrongFilter());
 		filters.add(new WikiLinkFilter(defaultNamespace));
+		filters.add(new TableFilter());
 
 	}
 
