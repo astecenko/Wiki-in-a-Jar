@@ -15,6 +15,7 @@
 				<xsl:apply-templates select="home-menu-entry" />
 				<xsl:apply-templates select="main-menu-entry" />
 				<xsl:apply-templates select="article-menu" />
+				<xsl:apply-templates select="/page/article/tab-menu" />
 				<td width="100%"></td>
 				<td>
 					<form method="GET" action="/find/pages/"
@@ -55,6 +56,41 @@
 		</td>
 	</xsl:template>
 
+	<xsl:template match="tab-menu">
+        <xsl:for-each select="tab-menu-entry">	
+        <xsl:choose>
+            <xsl:when test="@selected = 'yes'">
+                <td>
+                    <img
+                        src="/public/skins/default/common/left-corner.gif" width="4"
+                        height="24" />
+                </td>
+                <td id="tab-selected">
+                    <xsl:value-of select="." />
+                </td>
+                <td>
+                    <img
+                        src="/public/skins/default/common/right-corner.gif" width="15"
+                        height="24" />
+                </td>
+            </xsl:when>
+            <xsl:otherwise>
+                <td id="menu-entry">
+                    <a style="color: #FFF; font-weight: bold; ">
+                        <xsl:attribute name="href">
+                            <xsl:value-of select="@link" />
+                        </xsl:attribute>
+                        <xsl:attribute name="title">
+                            <xsl:value-of select="." />
+                        </xsl:attribute>
+                        <xsl:value-of select="." />
+                    </a>
+                </td>
+            </xsl:otherwise>
+        </xsl:choose>
+		</xsl:for-each>
+	</xsl:template>
+	
 	<xsl:template match="main-menu-entry">
 		<xsl:choose>
 			<xsl:when test="@selected = 'yes'">

@@ -34,6 +34,8 @@
 					<xsl:apply-templates select="/page/sub-menu" />
 					<div id="content">
 						<xsl:apply-templates
+							select="/page/article/tag-article-list" />
+						<xsl:apply-templates
 							select="/page/article/calendar" />
 						<div id="inner">
 
