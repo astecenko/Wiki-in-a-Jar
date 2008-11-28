@@ -3,6 +3,8 @@
 * [[2007-03-10 Some title]]
 * [[2007-03-31 Some title]]
 * [[2008-04-10 Some title]]
+* [[  Leading Space]]
+* [[tagtree:/wiki]]
 
 = Links Test =
 * [[Non existing page]]
@@ -31,3 +33,5 @@
 * ?* 
 * \
 * |
+* über
+* Japanese: ウェブ全体から検索
