@@ -15,9 +15,11 @@
 		<form method="POST" name="editform">
 			<xsl:attribute name="action">
 				/wiki/save/
-				<xsl:value-of
-					select="normalize-space(editfield/content-id)" />
+				<xsl:value-of select="normalize-space(editfield/content-id)" />
 			</xsl:attribute>
+		<table>
+	    <tr>
+	    <td>	
 			<textarea name="article-content" rows="20" cols="80">
 				<xsl:value-of select="editfield/content" />
 			</textarea>
@@ -27,14 +29,21 @@
 						select="normalize-space(editfield/content-id)" />
 				</xsl:attribute>
 			</input>
+			</td>
+			</tr>
+			<tr>
+			<td align="right">
 			<input type="submit" value="Save" accesskey="s"
 				title="Save [Alt-s]" />
+		</td>
+		</tr>
+	   </table>	
+		</form>
 			<script language="javascript">
 				<!-- 
 					document.editform.article-content.focus();
 					// -->
 			</script>
-		</form>
 	</xsl:template>
 
 </xsl:stylesheet>
