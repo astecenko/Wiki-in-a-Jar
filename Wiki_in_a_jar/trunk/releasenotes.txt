@@ -5,6 +5,15 @@ Personal Information Manager (PIM). It supports vcard (vcf)
 contact files.
 
 https://sourceforge.net/projects/wiki-in-a-jar/
+* Version 0.8 (11/28/2008)
+- NEW: Full UTF-8 support (thanks to Frank Dietrich)
+- NEW: Table support
+- NEW: HTML tags support: code, tt, pre
+- NEW: 'nowiki' tag support
+- NEW: Quick append box: append text to any wiki page without opening the edit view
+- BUG: Calendar would show each month with 31 days (thanks to Frank Dietrich)
+- BUG: Equals sign ('=') in heading would be removed
+- BUG: Linux start script now uses 'nohup' (thanks to Reto R.)
 
 * Version 0.7.1 (04/18/2007)
 - Fixed bug: Last vCard category was not recognized in tag tree
