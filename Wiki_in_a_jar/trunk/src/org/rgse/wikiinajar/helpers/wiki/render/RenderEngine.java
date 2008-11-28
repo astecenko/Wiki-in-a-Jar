@@ -22,12 +22,16 @@
 package org.rgse.wikiinajar.helpers.wiki.render;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.rgse.wikiinajar.helpers.wiki.render.filters.BreakFilter;
 import org.rgse.wikiinajar.helpers.wiki.render.filters.Filter;
 import org.rgse.wikiinajar.helpers.wiki.render.filters.HeadingFilter;
 import org.rgse.wikiinajar.helpers.wiki.render.filters.HrFilter;
 import org.rgse.wikiinajar.helpers.wiki.render.filters.IntendedFilter;
 import org.rgse.wikiinajar.helpers.wiki.render.filters.ListFilter;
+import org.rgse.wikiinajar.helpers.wiki.render.filters.NoWikiCaptureFilter;
+import org.rgse.wikiinajar.helpers.wiki.render.filters.NoWikiInsertFilter;
 import org.rgse.wikiinajar.helpers.wiki.render.filters.SectionFilter;
 import org.rgse.wikiinajar.helpers.wiki.render.filters.StrongFilter;
 import org.rgse.wikiinajar.helpers.wiki.render.filters.StrongerFilter;
@@ -66,7 +70,9 @@ public class RenderEngine {
 	}
 
 	public RenderEngine(String defaultNamespace) {
+	    List noWikiContent = new ArrayList();
 		filters = new ArrayList();
+		filters.add(new NoWikiCaptureFilter(noWikiContent));
 		filters.add(new SectionFilter());
 		filters.add(new HeadingFilter());
 		filters.add(new HrFilter());
@@ -77,7 +83,9 @@ public class RenderEngine {
 		filters.add(new StrongerFilter());
 		filters.add(new StrongFilter());
 		filters.add(new WikiLinkFilter(defaultNamespace));
+		filters.add(new BreakFilter());
 		filters.add(new TableFilter());
+		filters.add(new NoWikiInsertFilter(noWikiContent));
 
 	}
 
