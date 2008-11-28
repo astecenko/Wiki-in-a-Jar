@@ -52,7 +52,7 @@
           target: compile                      
          - - - - - - - - - - - - - - - - - -->
 	<target name="compile">
-		<javac srcdir="src" destdir="${build}/classes" debug="on" />
+		<javac srcdir="src" destdir="${build}/classes" source="1.4" target="1.4" debug="on" />
 	</target>
 
 	<!-- - - - - - - - - - - - - - - - - - 

@@ -18,7 +18,7 @@
 	<property name="build" value="build" />
 	<property name="dist" value="dist" />
 
-	<property name="dist.version" value="0.7.1" />
+	<property name="dist.version" value="0.8" />
 
 	<tstamp>
 		<format property="build.date" pattern="yyyyMMdd" />
@@ -76,7 +76,7 @@
           target: compile                      
          - - - - - - - - - - - - - - - - - -->
 	<target name="compile">
-		<javac srcdir="src" destdir="${build}/classes" classpath="lib/xrays.jar" debug="on" />
+		<javac srcdir="src" destdir="${build}/classes" source="1.4" target="1.4" classpath="lib/xrays.jar" debug="on" />
 	</target>
 
 	<!-- - - - - - - - - - - - - - - - - - 
