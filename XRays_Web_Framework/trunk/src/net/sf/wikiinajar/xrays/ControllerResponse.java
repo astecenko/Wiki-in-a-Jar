@@ -84,6 +84,10 @@ public class ControllerResponse {
 
 	private String controller;
 
+    private Class redirectController;
+
+    private String redirectAction;
+
 	protected ControllerResponse(String mime, Xml xml, String templateFile,
 			String controller) {
 		this(mime, xml, null, templateFile, controller);
@@ -100,6 +104,7 @@ public class ControllerResponse {
 		this.stream = stream;
 		this.templateFile = templateFile;
 		this.controller = controller;
+		this.redirectController = null;
 	}
 
 	public ControllerResponse(int errorCode, String resName) {
@@ -107,7 +112,12 @@ public class ControllerResponse {
 		this.resName = resName;
 	}
 
-	public String getMime() {
+	public ControllerResponse(Class controllerClass, String redirectAction) {
+	    this.redirectController = controllerClass;
+	    this.redirectAction = redirectAction;
+    }
+
+    public String getMime() {
 		return mime;
 	}
 
@@ -160,4 +170,39 @@ public class ControllerResponse {
 	public String getController() {
 		return controller;
 	}
+
+    /**
+     * Checks if this request should be redirected to another controller.
+     * 
+     * @return <code>true</code> if request needs to be redirected.
+     * 
+     * @see #getRedirectController()
+     */
+    public boolean isRedirect() {
+        return redirectController != null;
+    }
+
+    /**
+     * Returns the controller to redirect the request to, if set.
+     * 
+     * @return the controller or <code>null</code> if not set.
+     * 
+     * @see #isRedirect()
+     */
+    public Class getRedirectController() {
+        return redirectController;
+    }
+
+    /**
+     * If this response is a redirect, returns the action to invoke for the
+     * redirected controller.
+     * 
+     * @return action or <code>null</code> if response is not a redirect.
+     * 
+     * @see #isRedirect()
+     * @see #getRedirectController()
+     */
+    public String getRedirectAction() {
+        return redirectAction;
+    }
 }

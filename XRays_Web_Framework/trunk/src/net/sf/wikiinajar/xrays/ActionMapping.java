@@ -56,7 +56,7 @@ public class ActionMapping {
 	 */
 	public void register(Class class1) {
 
-		String actionName = getActionName(getClassName(class1));
+		String actionName = getActionName(class1);
 		mappings.put(actionName, class1);
 	}
 	
@@ -72,6 +72,15 @@ public class ActionMapping {
 		return name.substring(name.lastIndexOf(".") + 1);
 	}
 
+	/**
+	 * Derives the action name from the given controller class.
+	 * @param class1
+	 * @return
+	 */
+	protected String getActionName(Class class1) {
+	    return getActionName(getClassName(class1));
+	}
+	
 	protected String getActionName(String class1) {
 		String name = class1.toLowerCase();
 		if (name.endsWith(CONTROLLER_SUFFIX)) {

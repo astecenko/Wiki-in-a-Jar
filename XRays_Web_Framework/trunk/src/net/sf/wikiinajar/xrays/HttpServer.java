@@ -109,7 +109,10 @@ public class HttpServer extends NanoHTTPD {
 
 				if (response.wasError()) {
 					return handleError(response);
-				} else if (response.hasStream()) {
+				} else if (response.isRedirect()) {
+                    return getControllerResponse(response.getRedirectController(), makeRedirectPath(response.getRedirectController(), response
+                            .getRedirectAction(), path.getIds()), parms);
+                } else if (response.hasStream()) {
 					return new Response(HTTP_OK, response.getMime(), response
 							.getStream());
 				} else {
@@ -127,7 +130,11 @@ public class HttpServer extends NanoHTTPD {
 		}
 	}
 
-	private String stackTrace(Exception e) {
+	private UriPath makeRedirectPath(Class redirectController, String redirectAction, String ids) {
+        return new UriPath(mapping.getActionName(redirectController), redirectAction, ids);
+    }
+
+    private String stackTrace(Exception e) {
 		StringWriter sw = new StringWriter();
 		PrintWriter pw = new PrintWriter(sw);
 		e.printStackTrace(pw);
@@ -264,7 +271,11 @@ public class HttpServer extends NanoHTTPD {
 					: this.controller;
 		}
 
-		/**
+		public UriPath(String controller, String action, String ids) {
+		    this(controller + "/" + action + "/" + ids);
+        }
+
+        /**
 		 * Returns the mapping for the controller (the first element after the
 		 * leading slash in a URI.
 		 * 

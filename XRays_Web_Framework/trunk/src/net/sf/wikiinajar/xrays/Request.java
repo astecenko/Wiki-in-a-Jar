@@ -123,4 +123,18 @@ public class Request {
 		return new ControllerResponse(
 				ControllerResponse.HTTP_EXTERNAL_REDIRECT_FOUND, url);
 	}
+
+    /**
+     * Creates a new redirect to a controller.
+     * 
+     * @param controllerClass
+     *            The controller class.
+     * @param action
+     *            The name of the action to invoke for the redirected
+     *            controller.
+     * @return
+     */
+    public ControllerResponse redirect(Class controllerClass, String action) {
+        return new ControllerResponse(controllerClass, action);
+    }
 }
