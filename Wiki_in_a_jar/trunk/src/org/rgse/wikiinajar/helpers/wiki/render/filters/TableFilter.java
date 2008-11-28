@@ -118,7 +118,6 @@ public class TableFilter extends LineByLineFilter {
             buffer.append("\n");
         }
         closeTableIfOpen(buffer);
-        System.out.println(buffer);
     }
 
     private void closeHeaderIfOpen(StringBuffer buffer) {
