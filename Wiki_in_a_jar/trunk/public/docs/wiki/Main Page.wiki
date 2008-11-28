@@ -5,6 +5,7 @@
 * [[2008-04-10 Some title]]
 * [[  Leading Space]]
 * [[tagtree:/wiki]]
+* [[NoWikiTest]]
 
 = Links Test =
 * [[Non existing page]]
