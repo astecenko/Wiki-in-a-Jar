@@ -28,6 +28,7 @@ import org.rgse.wikiinajar.helpers.wiki.render.filters.BreakFilter;
 import org.rgse.wikiinajar.helpers.wiki.render.filters.Filter;
 import org.rgse.wikiinajar.helpers.wiki.render.filters.HeadingFilter;
 import org.rgse.wikiinajar.helpers.wiki.render.filters.HrFilter;
+import org.rgse.wikiinajar.helpers.wiki.render.filters.HtmlTagsFilter;
 import org.rgse.wikiinajar.helpers.wiki.render.filters.IntendedFilter;
 import org.rgse.wikiinajar.helpers.wiki.render.filters.ListFilter;
 import org.rgse.wikiinajar.helpers.wiki.render.filters.NoWikiCaptureFilter;
@@ -84,6 +85,7 @@ public class RenderEngine {
 		filters.add(new StrongFilter());
 		filters.add(new WikiLinkFilter(defaultNamespace));
 		filters.add(new BreakFilter());
+		filters.add(new HtmlTagsFilter());
 		filters.add(new TableFilter());
 		filters.add(new NoWikiInsertFilter(noWikiContent));
 
