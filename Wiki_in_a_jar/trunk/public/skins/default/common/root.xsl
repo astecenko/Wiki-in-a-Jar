@@ -53,6 +53,8 @@
 							<xsl:apply-templates
 								select="/page/article/events" />
 						</div>
+						<xsl:call-template
+					       name="quick-append" />
 						<xsl:apply-templates
 							select="/page/article/tag-list" />
 					</div>
@@ -98,6 +100,35 @@
 				</div>
 			</body>
 		</html>
+	</xsl:template>
+	
+	<xsl:template name="quick-append">
+	       <xsl:if test="/page/article/show-article">
+	   <div id="quick-append">
+          <form method="POST" name="append-form">
+            <xsl:attribute name="action">/wiki/append/<xsl:value-of select="normalize-space(/page/article/id)" /></xsl:attribute>
+        <table>
+        <tr>
+        <td>    
+            <textarea name="article-content" rows="2" cols="80" />
+            <input type="hidden" name="article-name">
+                <xsl:attribute name="value">
+                    <xsl:value-of
+                        select="normalize-space(/page/article/id)" />
+                </xsl:attribute>
+            </input>
+            </td>
+            </tr>
+            <tr>
+            <td align="right">
+            <input type="submit" value="Append" accesskey="s"
+                title="Save [Alt-s]" />
+        </td>
+        </tr>
+       </table> 
+        </form>
+        </div>
+        </xsl:if>
 	</xsl:template>
 
 </xsl:stylesheet>

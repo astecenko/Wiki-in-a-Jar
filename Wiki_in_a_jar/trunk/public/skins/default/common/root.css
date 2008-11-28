@@ -127,6 +127,10 @@ ol, ul, li {
     padding: 0.2em 1em;
 }
 
+#quick-append {
+    padding: 0.2em 1em;
+}
+
 #footer-content {
 
 }
@@ -236,4 +240,9 @@ ul {
 	background: url(/public/skins/default/common/cbx.gif) no-repeat left;
 	margin-left: 0;
 	padding-left: 15px;
+}
+
+textarea, input {
+    border: 1px solid #DBCFBD;
+    background-color: #FFF;
 }
